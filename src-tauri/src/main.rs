@@ -13,3 +13,24 @@ fn main() {
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
+
+#[cfg(test)]
+mod unit_test {
+    use sysinfo::{CpuExt, CpuRefreshKind, NetworkExt, RefreshKind, SystemExt};
+
+    #[test]
+    fn get_info() {
+        let mut info = sysinfo::System::new_with_specifics(RefreshKind::new().with_networks());
+        info.refresh_networks();
+
+        let network = info.networks();
+        for (interface_name, data) in network {
+            println!(
+                "[{}] in: {}, out: {}",
+                interface_name,
+                data.received(),
+                data.transmitted(),
+            );
+        }
+    }
+}
