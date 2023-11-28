@@ -1,9 +1,9 @@
-import {defineConfig} from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-    plugins: [react()],
+    plugins: [ react() ],
 
     // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
     //
@@ -14,4 +14,4 @@ export default defineConfig(async () => ({
         port: 23251,
         strictPort: true,
     }
-}));
+}))
